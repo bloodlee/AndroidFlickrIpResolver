@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Flickr IP查找器</string>
+    <string name="refresh">刷新</string>
+    <string name="about">关于</string>
+    <string name="copy">拷贝</string>
+    <string name="copy_info">服务器信息已经拷贝，请按照说明配置相应Host文件</string>
+    <string name="error_info">不能找到Flickr服务器信息，请检查网络连接</string>
+    <string name="initial_message">在中国，常常不能正常访问Flickr，原因是主服务器（Global）经常被屏蔽。\n但幸运的是，经测试，Flickr有另一组服务器（East）可以正常访问。请点击“刷新”找到相关服务器的IP地址，并点击“信息”到找修改各设备Host文件的办法。</string>
+    <string name="server_info">服务器信息</string>
+
+</resources>
