@@ -1,6 +1,7 @@
 package app.yli.org.flickriptranslator;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -14,6 +15,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.common.base.Strings;
 
 
 public class MainActivity extends Activity {
@@ -50,24 +53,31 @@ public class MainActivity extends Activity {
       // Handle action bar item clicks here. The action bar will
       // automatically handle clicks on the Home/Up button, so long
       // as you specify a parent activity in AndroidManifest.xml.
-      int id = item.getItemId();
-      if (id == R.id.refresh) {
-        new TranslatingTask(getApplicationContext(), outputTextView).execute("", "", "");
-      } else if (id == R.id.copy) {
+    Context context = getApplicationContext();
+
+    int id = item.getItemId();
+    if (id == R.id.refresh) {
+      ProgressDialog pd = ProgressDialog.show(MainActivity.this, "", "正在查找可用的服务器...");
+      new TranslatingTask(getApplicationContext(), outputTextView, pd).execute("", "", "");
+    } else if (id == R.id.copy) {
+      CharSequence output = outputTextView.getText();
+
+      CharSequence toastText = context.getText(R.string.copy_fail_info);
+      if (!Strings.isNullOrEmpty(output.toString())) {
         ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-        ClipData clip = ClipData.newPlainText("label", outputTextView.getText());
+        ClipData clip = ClipData.newPlainText("label", output);
         clipboard.setPrimaryClip(clip);
-
-        Context context = getApplicationContext();
-        CharSequence text = context.getText(R.string.copy_info);
-        int duration = Toast.LENGTH_SHORT;
-
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
-      } else if (id == R.id.about) {
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.bloodlee.com"));
-        startActivity(browserIntent);
+        toastText = context.getText(R.string.copy_info);
       }
-      return super.onOptionsItemSelected(item);
+
+      int duration = Toast.LENGTH_SHORT;
+
+      Toast toast = Toast.makeText(context, toastText, duration);
+      toast.show();
+    } else if (id == R.id.about) {
+      Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.bloodlee.com/wordpress/?page_id=792"));
+      startActivity(browserIntent);
+    }
+    return super.onOptionsItemSelected(item);
   }
 }

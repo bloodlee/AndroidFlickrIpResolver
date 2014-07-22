@@ -2,7 +2,8 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="10dp">
 
     <TextView
         android:layout_width="match_parent"
@@ -24,6 +25,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/outpout_textview"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:text="@string/initial_info"/>
 
 </LinearLayout>

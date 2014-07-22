@@ -1,5 +1,6 @@
 package app.yli.org.flickriptranslator;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.TextView;
@@ -15,9 +16,12 @@ public class TranslatingTask extends AsyncTask<String, String, String> {
 
   private final Context context;
 
-  public TranslatingTask(Context context, TextView outputTextView) {
+  private final ProgressDialog pd;
+
+  public TranslatingTask(Context context, TextView outputTextView, ProgressDialog pd) {
     this.context = context;
     this.outputTextView = outputTextView;
+    this.pd = pd;
   }
 
   @Override
@@ -37,5 +41,6 @@ public class TranslatingTask extends AsyncTask<String, String, String> {
   @Override
   protected void onPostExecute(String s) {
     outputTextView.setText(s);
+    pd.dismiss();
   }
 }
