@@ -30,7 +30,7 @@ public class TranslatingTask extends AsyncTask<String, String, String> {
     if (farms != null) {
       StringBuilder sb = new StringBuilder();
       for (FlickrFarm farm : farms) {
-        sb.append(String.format("%s %s%n", farm.getGlobalHostName(), farm.getEastHostIp()));
+        sb.append(String.format("%s %s%n", farm.getEastHostIp(), farm.getGlobalHostName()));
       }
       return sb.toString();
     } else {
