@@ -75,7 +75,7 @@ public class MainActivity extends Activity {
       Toast toast = Toast.makeText(context, toastText, duration);
       toast.show();
     } else if (id == R.id.about) {
-      Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.bloodlee.com/wordpress/?page_id=792"));
+      Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.innoli.com/wordpress/?page_id=792"));
       startActivity(browserIntent);
     }
     return super.onOptionsItemSelected(item);
